@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plush Lips - Shopify Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="liplogo.jpg">
+    <style>
+        /* Custom CSS for specific fonts and colors not easily covered by Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333; /* Default dark text color */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .script-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        .bg-custom-black {
+            background-color: #1A1A1A; /* Deep black for header/footer */
+        }
+        .text-custom-pink {
+            color: #FF69B4; /* Bright pink accent */
+        }
+        .bg-light-pink-gradient {
+            background: linear-gradient(to right, #FDEBF7, #FEE0F2); /* Light pink gradient for sections */
+        }
+        .bg-dark-pink-gradient {
+            background: linear-gradient(to right, #F7C6E6, #F1A7D1); /* Darker pink gradient for sections */
+        }
+        .text-gradient-pink-purple {
+            background: linear-gradient(to right, #FF69B4, #9B59B6); /* Pink to purple gradient for text */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback for browsers that don't support text-fill-color */
+        }
+
+        /* Specific styling for the "Shop By Category" vertical text */
+        .category-text-vertical {
+            writing-mode: vertical-rl; /* Vertical text, right-to-left */
+            text-orientation: mixed; /* Mix orientation for characters */
+            transform: rotate(180deg); /* Rotate to read bottom-up */
+            white-space: nowrap; /* Prevent text from wrapping */
+            font-size: 2.5rem; /* Adjust size as needed */
+            font-weight: 700;
+            color: #FFFFFF; /* White text on dark background */
+        }
+
+        /* Adjustments for the main hero image to blend */
+        .hero-main-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-lg */
+        }
+        .hero-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the container */
+            object-position: center; /* Centers the image */
+        }
+
+        /* Product card image placeholder */
+        .product-image-placeholder {
+            width: 100%;
+            height: 200px; /* Adjust height as needed for your images */
+            background-color: #E0E0E0; /* Light grey placeholder */
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Ensure consistent height for product cards */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Important for grid alignment */
+        }
+
+        /* Styling for the background video */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the entire container */
+            z-index: -1; /* Place behind content */
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+            z-index: -1; /* Place behind content, on top of video */
+        }
+        /* Ensure content is above video/overlay */
+        .section-content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .category-text-vertical {
+                writing-mode: horizontal-tb;
+                transform: rotate(0deg);
+                font-size: 1.8rem;
+            }
+            .shop-by-category-grid {
+                grid-template-columns: 1fr;
+            }
+            .category-card {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 1.5rem;
+            }
+            .video-background, .video-overlay {
+                display: none; /* Hide video on smaller screens if it impacts performance or layout */
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="bg-custom-black text-white text-center py-2 text-sm">
+        Grand Reopening Sale! 🎉 Use code GRAND20 for 20% off all orders!
+    </div>
+
+    <header class="bg-pink-300 shadow-sm">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        
+            <ul class="hidden md:flex space-x-6 text-sm font-medium">
+                <li><a href="#" class="hover:text-pink-200">Shop</a></li>
+                <li><a href="#" class="hover:text-pink-200">Best Sellers</a></li>
+                <li><a href="#" class="hover:text-pink-200">Glossary</a></li>
+                <li><a href="#" class="hover:text-pink-200">Matte Lipsticks</a></li>
+                <li><a href="#" class="hover:text-pink-200">About</a></li>
+            </ul>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-gray-600 hover:text-pink-200"><i class="fas fa-search"></i></a>
+                <a href="#" class="text-gray-600 hover:text-pink-200"><i class="fas fa-user"></i></a>
+                <a href="#" class="text-gray-600hover:text-pink-200k"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+            <button class="md:hidden text-gray-600 hover:text-pink-200">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class=" py-12 md:py-20">
+            <video autoplay loop muted playsinline class="video-background">
+                <source src="/videos/sog.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+                
+                <div class="text-center md:text-left p-4">
+                    <p class="text-xl md:text-2xl font-semibold mb-2">WELCOME TO</p>
+                    <h1 class="text-5xl md:text-7xl font-bold script-font text-gradient-pink-purple leading-tight mb-4">Plush Lips</h1>
+                    <p class="text-lg md:text-xl text-gray-700 mb-6">Your ultimate destination for luxurious lip products.</p>
+                    <button class="bg-pink-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-pink-700 transition-colors">
+                        SHOP NEW ARRIVALS <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">New Arrivals</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder " style="background-image: url('images/lip4.png');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">Soft Matte</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder" style="background-image: url('images/lip2.png');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">Cuddle</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder" style="background-image: url('images/lip3.png');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">Plum</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder" style="background-image: url('images/lip1.png');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">Blush</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder" style="background-image: url('images/lipi5.jpg');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">brown</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder" style="background-image: url('images/lipi6.jpg');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">light</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder" style="background-image: url('images/lipi7.jpg');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">lightpink</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="product-image-placeholder" style="background-image: url('images/lipi8.jpg');"></div>
+                        <h3 class="text-lg font-semibold text-center mb-1">orange</h3>
+                        <p class="text-gray-600 text-sm text-center">Lipstick</p>
+                        <p class="text-lg font-bold text-custom-pink text-center mt-2">$22.00</p>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center space-x-2 mb-8">
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                    <span class="w-2 h-2 bg-custom-pink rounded-full"></span>
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                </div>
+                <div class="text-center">
+                    <button class="border border-gray-400 text-gray-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+                        SHOP ALL NEW ARRIVALS
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-dark-pink-gradient py-16">
+            <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <img src="/images/gloss.jpg" alt="Lip gloss model" class="rounded-lg shadow-lg w-3/4 mx-auto md:w-auto h-auto object-cover">
+                </div>
+                <div class="text-center md:text-left p-4">
+                    <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">Lip gloss</h2>
+                    <p class="text-white text-lg mb-6">SPEAKS LOUDER THAN WORDS</p>
+                    <button class="border-2 border-white text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-white hover:text-pink-200 transition-colors">
+                        SHOP THE COLLECTION <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white py-16">
+            <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1 text-center md:text-left p-4">
+                    <h2 class="text-5xl md:text-6xl font-bold text-gray-800 mb-4">Nudes</h2>
+                    <p class="text-gray-700 text-lg mb-6">WE'RE INTERESTED IN SHOWING</p>
+                    <button class="border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-full text-lg font-semibold hover:bg-pink-200 hover:text-white transition-colors">
+                        SHOP THE COLLECTION <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                <div class="order-1 md:order-2">
+                    <img src="images/nudeslip.jpg" alt="Nudes makeup model" class="rounded-lg shadow-lg w-3/4 mx-auto md:w-auto h-auto object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-pink-300 py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Shop By Category</h2>
+                <div class="shop-by-category-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="category-card flex flex-col items-center justify-center bg-gray-800 rounded-lg p-6 h-64 md:h-80 relative overflow-hidden group">
+                        <img src="images/make1.jpg" alt="Glosses category" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-75 transition-opacity duration-300">
+                        <span class="category-text-vertical relative z-10">GLOSSES</span>
+                    </div>
+                    <div class="category-card flex flex-col items-center justify-center bg-gray-800 rounded-lg p-6 h-64 md:h-80 relative overflow-hidden group">
+                        <img src="images/make2.jpg" alt="Liners category" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-75 transition-opacity duration-300">
+                        <span class="category-text-vertical relative z-10">LINERS</span>
+                    </div>
+                    <div class="category-card flex flex-col items-center justify-center bg-gray-800 rounded-lg p-6 h-64 md:h-80 relative overflow-hidden group">
+                        <img src="images/make3.jpg" alt="Creams category" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-75 transition-opacity duration-300">
+                        <span class="category-text-vertical relative z-10">CREAMS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-light-pink-gradient py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Follow Us On Instagram</h2>
+                <p class="text-gray-700 mb-8">@plushlipsbeauty</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="images/china 4.jpg" alt="Instagram post 1" class="w-full h-auto rounded-lg shadow-md ">
+                    <img src="images/chin1.jpg" alt="Instagram post 2" class="w-full h-auto rounded-lg shadow-md">
+                    <img src="images/china2.jpg" alt="Instagram post 3" class="w-full h-auto rounded-lg shadow-md">
+                    <img src="images/china3.jpg" alt="Instagram post 4" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+        </section>
+
+        <section class=" py-16 relative overflow-hidden">
+            <video autoplay loop muted playsinline class="video-background">
+                <source src="videos/lip.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+            <div class="container mx-auto px-4 text-center section-content-wrapper">
+                <h2 class="text-5xl md:text-6xl font-bold script-font text-white mb-4">join the plush</h2>
+                <p class="text-white text-lg mb-8">Are you on the list?</p>
+                <p class="text-white text-sm mb-8 max-w-xl mx-auto">SUBSCRIBE TO OUR NEWSLETTER FOR YOUR EXCLUSIVE SALES, PRODUCT UPDATES & MORE!</p>
+                <form class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <input type="email" placeholder="Enter your email address" class="w-full md:w-1/3 p-3 rounded-full border-2 border-white bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <button type="submit" class="bg-white text-custom-pink px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+                        SUBSCRIBE
+                    </button>
+                </form>
+                <img src="images/lipstick.jpg" alt="Woman with plush lips" class="absolute bottom-0 right-4 md:right-16 w-32 h-auto rounded-full shadow-lg hidden md:block">
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-pink-200 text-black py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+            <div>
+                <h4 class="text-xl font-bold mb-4">Shop</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-custom-pink">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Best Sellers</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Lipsticks</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Gloss</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Our Store</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-custom-pink">About Us</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">FAQ</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Policy</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-custom-pink">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Accessibility</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Customer Service</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-custom-pink">Support Center</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Track Order</a></li>
+                    <li><a href="#" class="hover:text-custom-pink">Wholesale Inquiries</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-gray-500 text-sm mt-12">
+            <p>&copy; 2023 Plush Lips. All rights reserved.</p>
+            <p class="mt-2">VISIT OUR WEBSITE AT WWW.SEDONADESIGNS.CA TO BOOK NOW</p>
+        </div>
+    </footer>
+</body>
+</html>
