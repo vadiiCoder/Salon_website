@@ -1,4 +1,4 @@
-💄 Plush Lips – Beauty Store Website
+💄 Plush Lips – Beauty Store Website!
 
 A modern and visually appealing beauty e-commerce website built using HTML, CSS (Tailwind CSS), and JavaScript.
 This project focuses on clean UI design, responsive layout, and an engaging user experience for a cosmetic brand.
@@ -12,7 +12,9 @@ This project focuses on clean UI design, responsive layout, and an engaging user
 🧾 Newsletter subscription form
 🧭 Navigation bar with icons (search, user, cart)
 🎯 Category-based shopping sections
+
 🛠️ Technologies Used
+
 HTML5 – Structure of the website
 CSS3 + Tailwind CSS – Styling and responsive design
 JavaScript – Interactivity
